@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice City Cover Studio — GTA 6-style cover art from any photo</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls" aria-label="Cover studio controls">
+    <header>
+      <h1>VICE CITY <span>Cover Studio</span></h1>
+      <p>Turn any photo + caption into GTA&nbsp;6-style multi-panel cover art. Fully offline — nothing leaves your browser.</p>
+    </header>
+
+    <section class="group">
+      <h2>1 · Photos (up to 4)</h2>
+      <div id="drop" class="drop" tabindex="0" role="button" aria-label="Upload photos">
+        Drop photos here or click to browse
+        <input id="photo" type="file" accept="image/*" multiple hidden>
+      </div>
+      <div class="row">
+        <button type="button" data-sample="pier">+ Sample: pier</button>
+        <button type="button" data-sample="boulevard">+ Sample: boulevard</button>
+      </div>
+      <div id="slots" class="slots"></div>
+      <div class="stepper">Zoom selected panel
+        <span class="slider-row"><button type="button" id="zoomOut" aria-label="Zoom out">−</button><b id="zoomVal">100%</b><button type="button" id="zoomIn" aria-label="Zoom in">+</button></span>
+      </div>
+      <div class="row">
+        <button type="button" id="fillBtn">Fill</button>
+        <button type="button" id="fitBtn">Fit</button>
+        <button type="button" id="resetCrop">Reset crop</button>
+      </div>
+      <p class="hint">Tip: click a panel on the cover to select it, then drag it to reposition the photo.</p>
+    </section>
+
+    <section class="group">
+      <h2>2 · Layout</h2>
+      <div class="chips" id="layouts">
+        <button type="button" data-layout="hero3">Hero + 3</button>
+        <button type="button" data-layout="grid4">Grid 4</button>
+        <button type="button" data-layout="full">Full bleed</button>
+        <button type="button" data-layout="tilted">Tilted snapshots</button>
+        <button type="button" data-layout="strip9">Strip 9</button>
+        <button type="button" data-layout="grid6">Grid 6</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>3 · Grade</h2>
+      <div class="chips" id="grades">
+        <button type="button" data-grade="sunset">Vice City sunset</button>
+        <button type="button" data-grade="neon">Neon nights</button>
+        <button type="button" data-grade="noir">Palm noir</button>
+        <button type="button" data-grade="pink">Vice pink</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>4 · Caption</h2>
+      <label>Title <input id="title" type="text" maxlength="40" value="Sunset Heist"></label>
+      <label>Subtitle <input id="subtitle" type="text" maxlength="60" value="welcome to Vice City"></label>
+      <div class="row2">
+        <label>Title font
+          <select id="titleFont">
+            <option value="anton">Anton</option>
+            <option value="bebas">Bebas Neue</option>
+          </select>
+        </label>
+        <label>Position
+          <select id="captionPos">
+            <option value="bottom">Bottom</option>
+            <option value="top">Top</option>
+          </select>
+        </label>
+      </div>
+      <div class="stepper">Title size
+        <span class="slider-row"><button type="button" id="titleSizeOut" aria-label="Smaller title">−</button><b id="titleSizeVal">11%</b><button type="button" id="titleSizeIn" aria-label="Bigger title">+</button></span>
+      </div>
+      <label class="check"><input id="outline" type="checkbox" checked> Dark outline on title</label>
+    </section>
+
+    <section class="group">
+      <h2>5 · Export PNG</h2>
+      <div class="chips" id="aspects">
+        <button type="button" data-aspect="square">1080 × 1080</button>
+        <button type="button" data-aspect="portrait">1080 × 1350</button>
+        <button type="button" data-aspect="landscape">1920 × 1080</button>
+      </div>
+      <div class="row">
+        <button type="button" class="primary" data-export="square">PNG 1080×1080</button>
+        <button type="button" class="primary" data-export="portrait">PNG 1080×1350</button>
+      </div>
+      <div class="row">
+        <button type="button" class="primary" data-export="landscape">PNG 1920×1080</button>
+        <button type="button" id="exportAll">Export all</button>
+      </div>
+      <p id="status" role="status">Loading…</p>
+      <p class="fineprint">Fonts: Anton, Bebas Neue &amp; Pacifico (SIL Open Font License, bundled in app/fonts). No Rockstar logos, official artwork or GTA fonts are used. Sample photos were made for make.fun with an image model and are free to use.</p>
+    </section>
+  </section>
+  <section class="stage">
+    <div id="cover" class="cover" aria-label="The cover preview">
+      <div id="panels" class="panels"></div>
+      <div id="captionLayer" class="caption-layer">
+        <div id="coverTitle" class="cover-title"></div>
+        <div id="coverSubtitle" class="cover-subtitle"></div>
+      </div>
+    </div>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
